@@ -1,0 +1,164 @@
+{
+	"info": {
+		"_postman_id": "6f5042a0-3410-4ae1-80c0-0a8eaa32692a",
+		"name": "Stripe_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Creat_Customer",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "66f85d7d-2821-4441-b7a9-0fd43e7c3121",
+						"exec": [
+							"pm.environment.set(\"baseURL\",\"https://api.stripe.com/v1\");",
+							"pm.environment.set(\"endPoint\",\"customers\");",
+							"",
+							"console.log(\"Base URL is -->\"+pm.environment.get(\"baseURL\"));",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "c45a4410-1584-437e-aef6-f6d5c52925d0",
+						"exec": [
+							"",
+							"var jsonResponse = pm.response.json();",
+							"",
+							"console.log(\"Customer ID in the response is-->\"+jsonResponse.id);",
+							"",
+							"pm.environment.set(\"customerID\",jsonResponse.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/{{endPoint}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"{{endPoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve_Customer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.stripe.com/v1/customers/{{customerID}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"stripe",
+						"com"
+					],
+					"path": [
+						"v1",
+						"customers",
+						"{{customerID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update_Existing_Customer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.stripe.com/v1/customers/{{cus_HAPEjTCQZi54k3}}?email=amit1122@gmail.com",
+					"protocol": "https",
+					"host": [
+						"api",
+						"stripe",
+						"com"
+					],
+					"path": [
+						"v1",
+						"customers",
+						"{{cus_HAPEjTCQZi54k3}}"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "amit1122@gmail.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete_a_Customer",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://api.stripe.com/v1/customers/{{customerID}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"stripe",
+						"com"
+					],
+					"path": [
+						"v1",
+						"customers",
+						"{{customerID}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "username",
+				"value": "sk_test_ayv1jfyTHtgnmt44EQRvI7xI",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "2ba0d632-49f5-4dcf-bc2d-8e2fdb9bf42d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "865bb5cd-15e9-4308-aaf0-f522f15148b1",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
